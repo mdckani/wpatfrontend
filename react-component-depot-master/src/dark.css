@@ -3,6 +3,13 @@ body.dark-mode {
     color: #fff;
 }
 
+ #appThemeIcon {
+    color: rgba(0, 0, 0, 0.986) !important;
+}
+body.dark-mode #appThemeIcon {
+    color: rgba(255, 255, 255, 0.986) !important;
+}
+  
 body.dark-mode #sidebar {
     background: #1d2127;
 }
