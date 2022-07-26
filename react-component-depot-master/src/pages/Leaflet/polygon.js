@@ -6,9 +6,7 @@ import { EditControl } from "react-leaflet-draw";
 import osm from "./osm-providers";
 import { useRef } from "react";
 import "leaflet/dist/leaflet.css";
-import "leaflet-draw/dist/leaflet.draw.css";
-
-import ExternalInfo from "components/ExternalInfo";
+import "leaflet-draw/dist/leaflet.draw.css"; 
 const PolygonMap = () => {
   const [center, setCenter] = useState({ lat: 24.4539, lng: 54.3773 });
   const [mapLayers, setMapLayers] = useState([]);
@@ -58,13 +56,11 @@ const PolygonMap = () => {
     });
   };
 
-  const actions = ["showTable"];
+  const actions = ["showTable","convertToKML"];
   return (
     <>
-      <Header title="React Leaflet Map Example" actions={actions} />
-
-      <ExternalInfo page="leafletBasic" />
-
+      <Header title="" actions={actions} />
+  
       <div className="row">
         <div className="col">
           <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
