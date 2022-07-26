@@ -29,9 +29,7 @@ const DrawMap = () => {
   const _created = (e) => console.log(e);
 
   return (
-    <>
-      <Header title="React Leaflet - Draw polygon, circle, rectangle on map" />
-
+    <> 
       <ExternalInfo page="leafletDraw" />
 
       <div className="row">

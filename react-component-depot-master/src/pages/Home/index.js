@@ -1,14 +1,10 @@
 import React from "react";
 import YoutubeLogo from "resources/images/yt-logo.png";
 import AppConfig from "App.config";
-import BasicMap from "pages/Leaflet/basic";
-
+import "../../pages/Leaflet/index.css";
+const PolygonMap = React.lazy(() => import("../../pages/Leaflet/polygon"));
 const Home = () => {
-  return (
-    
-      <BasicMap />
-    
-  );
+  return <PolygonMap />;
 };
 
 export default Home;

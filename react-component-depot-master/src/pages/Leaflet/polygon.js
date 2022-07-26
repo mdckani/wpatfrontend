@@ -58,13 +58,8 @@ const PolygonMap = () => {
   };
 
   return (
-    <>
-      <Header title="React Leaflet - Polygon" />
-
-      <div className="row">
-        <div className="col text-center">
-          <h2>React-leaflet - Create, edit and delete polygon on map</h2>
-
+    <> 
+      <div className="row"> 
           <div className="col">
             <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
               <FeatureGroup>
@@ -92,8 +87,7 @@ const PolygonMap = () => {
             <pre className="text-left">{JSON.stringify(mapLayers, 0, 2)}</pre>
           </div>
         </div>
-      </div>
-    </>
+     </>
   );
 };
 

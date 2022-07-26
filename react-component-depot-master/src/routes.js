@@ -39,22 +39,7 @@ const CancelableFetchRequest = React.lazy(() =>
 const UserListTable = React.lazy(() => import("pages/UserListTable"));
 
 const routes = [
-  {
-    enabled: true,
-    path: "/map",
-    component: GoogleMaps,
-    navbar: "google-map-react",
-    child: [
-      {
-        name: "Basic Google Maps",
-        path: "/map",
-      },
-      {
-        name: "Custom Google Maps",
-        path: "/map/custom-style",
-      },
-    ],
-  },
+  
   {
     enabled: true,
     path: "/button-loader",
