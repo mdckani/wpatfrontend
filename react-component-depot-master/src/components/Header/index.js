@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { toggleNavbar } from "actions/layout";
 
-const Header = ({ title = "Page Title" }) => {
+const Header = ({ title = "Page Title" , actions=["showMaps","showTable", "signOut"]}) => {
     const dispatch = useDispatch();
 
     const toogleNavbar = () => {
@@ -21,6 +21,17 @@ const Header = ({ title = "Page Title" }) => {
                     <i className="fas fa-align-justify"></i>
                 </button>
                 <h3>{title}</h3>
+                {actions.map(({ name }) => (
+                     <button
+                     text={name}
+                     type="button"
+                     id="sidebarCollapse"
+                     className="btn btn-info"
+                   //  onClick={name}
+                 >
+                     <i className="fas fa-align-justify"></i>
+                 </button>
+                ))}
             </div>
         </nav>
     );

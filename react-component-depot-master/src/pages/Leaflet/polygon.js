@@ -8,6 +8,7 @@ import { useRef } from "react";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css";
 
+import ExternalInfo from "components/ExternalInfo";
 const PolygonMap = () => {
   const [center, setCenter] = useState({ lat: 24.4539, lng: 54.3773 });
   const [mapLayers, setMapLayers] = useState([]);
@@ -57,37 +58,42 @@ const PolygonMap = () => {
     });
   };
 
+  const actions = ["showTable"];
   return (
-    <> 
-      <div className="row"> 
-          <div className="col">
-            <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
-              <FeatureGroup>
-                <EditControl
-                  position="topright"
-                  onCreated={_onCreate}
-                  onEdited={_onEdited}
-                  onDeleted={_onDeleted}
-                  draw={{
-                    rectangle: false,
-                    polyline: false,
-                    circle: false,
-                    circlemarker: false,
-                    marker: false,
-                  }}
-                />
-              </FeatureGroup>
+    <>
+      <Header title="React Leaflet Map Example" actions={actions} />
 
-              <TileLayer
-                url={osm.maptiler.url}
-                attribution={osm.maptiler.attribution}
+      <ExternalInfo page="leafletBasic" />
+
+      <div className="row">
+        <div className="col">
+          <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
+            <FeatureGroup>
+              <EditControl
+                position="topright"
+                onCreated={_onCreate}
+                onEdited={_onEdited}
+                onDeleted={_onDeleted}
+                draw={{
+                  rectangle: false,
+                  polyline: false,
+                  circle: false,
+                  circlemarker: false,
+                  marker: false,
+                }}
               />
-            </Map>
+            </FeatureGroup>
 
-            <pre className="text-left">{JSON.stringify(mapLayers, 0, 2)}</pre>
-          </div>
+            <TileLayer
+              url={osm.maptiler.url}
+              attribution={osm.maptiler.attribution}
+            />
+          </Map>
+
+          <pre className="text-left">{JSON.stringify(mapLayers, 0, 2)}</pre>
         </div>
-     </>
+      </div>
+    </>
   );
 };
 
