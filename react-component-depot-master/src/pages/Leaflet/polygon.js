@@ -56,7 +56,8 @@ const PolygonMap = () => {
     });
   };
 
-  const actions = ["showTable","convertToKML"];
+  const actions = [//{ text: "showMaps", path: "/" },
+  { text: "showTable", path: "/data-table" } ];
   return (
     <>
       <Header title="" actions={actions} />

@@ -6,46 +6,53 @@ import { Scrollbars } from "react-custom-scrollbars";
 
 const Header = ({
   title = "",
-  actions = ["showMaps", "showTable", "signOut"],
+  actions = [
+    { text: "showMaps", path: "/" },
+    { text: "showTable", path: "/data-table" },
+    { text: "signOut", path: "/signOut" },
+  ],
 }) => {
   const dispatch = useDispatch();
-  const defaultActions = ["convertKML", "account"];
+  const defaultActions = [
+    { text: "convertKML", path: "/" },
+    { text: "signOut", path: "/signOut" },
+  ];
   const toogleNavbar = () => {
     return dispatch(toggleNavbar());
   };
 
   return (
     <nav>
-         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <div className="container-fluid pr-5">
-            <button
-              type="button"
-              id="sidebarCollapse"
-              className="navbar-brand  btn btn-info"
-              onClick={toogleNavbar}
-            >
-              <i className="fas fa-align-justify"></i>
-            </button>
-            <h3>{title}</h3>
-            <ul className="navbar-nav ">
-              {actions.map((name) => (
-                <li  className="nav-link">
-                  <NavLink to="/" activeClassName="active">
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-              {defaultActions.map((name) => (
-                <li  className="nav-link">
-                  <NavLink to="/" activeClassName="active">
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul> 
-          </div>
-        </nav>
-     </nav>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <div className="container-fluid pr-5">
+          <button
+            type="button"
+            id="sidebarCollapse"
+            className="navbar-brand  btn btn-info"
+            onClick={toogleNavbar}
+          >
+            <i className="fas fa-align-justify"></i>
+          </button>
+          <h3>{title}</h3>
+          <ul className="navbar-nav ">
+            {actions.map((item) => (
+              <li className="nav-link">
+                <NavLink to={item.path} activeClassName="active">
+                  {item.text}
+                </NavLink>
+              </li>
+            ))}
+            {defaultActions.map((item) => (
+              <li className="nav-link">
+                <NavLink to={item.path} activeClassName="active">
+                  {item.text}
+                </NavLink>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+    </nav>
   );
 };
 

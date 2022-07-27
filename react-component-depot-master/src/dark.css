@@ -22,6 +22,9 @@ body.dark-mode #sidebar ul li a {
     background: #12171e;
 }
 
+body.dark-mode .nav-link{
+    color : white !important; 
+}
 body.dark-mode .navbar {
     background: #dad3d3 !important;
     box-shadow: 1px 3px 0 1px #2f3139;
