@@ -3,6 +3,7 @@ const GIT_REPO =
 const YOUTUBE_BASE = "https://youtu.be/";
 
 export default {
+  backendApi:"http:8090//localhost",
   api: process.env.REACT_APP_API_ENDPOINT,
 
   GOOGLE: {

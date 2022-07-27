@@ -7,8 +7,8 @@ import AppConfig from "App.config";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 
-const DataTable = () => {
-  const [comments, setComments] = useState([]);
+const DataTable = (props) => {
+  const [items, setItems] = useState([]);
   const [loader, showLoader, hideLoader] = useFullPageLoader();
   const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -17,73 +17,58 @@ const DataTable = () => {
 
   const ITEMS_PER_PAGE = 50;
 
-  const headers = [
-    { name: "No#", field: "id", sortable: true },
-    { name: "Name", field: "name", sortable: true },
-    { name: "Latitude", field: "latitude", sortable: true },
-    { name: "Longitude", field: "longitude", sortable: true },
-    { name: "Company", field: "company.name", sortable: true },
-    { name: "", field: "", sortable: true },
-  ];
+
 
   useEffect(() => {
     const getData = () => {
       showLoader();
-      const url = "http://localhost:8090/windturbines";
-      const onSuccess = function (e) {
-        console.log(e);
-      };
       axios
-        .get(url)
+        .get(props.url)
         .then((resp) => {
           let result = resp.data;
-          setComments(result);
+          setItems(result);
           hideLoader();
         })
         .catch((error) => {
-          if (onSuccess) {
-            setComments([]);
-            hideLoader();
-          }
+          setItems([]);
+          hideLoader();
         });
     };
 
     getData();
   }, []);
 
-  const commentsData = useMemo(() => {
-    let computedComments = comments;
+  const itemsData = useMemo(() => {
+    let computedItems = items;
 
     if (search) {
-      computedComments = computedComments.filter(
-        (comment) =>
-          comment.name.toLowerCase().includes(search.toLowerCase()) ||
-          comment.email.toLowerCase().includes(search.toLowerCase())
+      computedItems = computedItems.filter(
+        (item) =>
+          item.name.toLowerCase().includes(search.toLowerCase()) ||
+          item.email.toLowerCase().includes(search.toLowerCase())
       );
     }
 
-    setTotalItems(computedComments.length);
+    setTotalItems(computedItems.length);
 
-    //Sorting comments
+    //Sorting items
     if (sorting.field) {
       const reversed = sorting.order === "asc" ? 1 : -1;
-      computedComments = computedComments.sort(
+      computedItems = computedItems.sort(
         (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
       );
     }
 
     //Current Page slice
-    return computedComments.slice(
+    return computedItems.slice(
       (currentPage - 1) * ITEMS_PER_PAGE,
       (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
     );
-  }, [comments, currentPage, search, sorting]);
+  }, [items, currentPage, search, sorting]);
 
   return (
     <>
-      <Header title="Building a data table in react" />
-
-      <ExternalInfo page="datatable" />
+    
 
       <div className="row w-100">
         <div className="col mb-3 col-12 text-center">
@@ -108,11 +93,11 @@ const DataTable = () => {
 
           <table className="table table-striped">
             <TableHeader
-              headers={headers}
+              headers={props.headers}
               onSorting={(field, order) => setSorting({ field, order })}
             />
             <tbody>
-              {commentsData.map((item) => (
+              {itemsData.map((item) => (
                 <tr>
                   <th scope="row" key={item.id}>
                     {item.id}
@@ -122,8 +107,18 @@ const DataTable = () => {
                   <td>{item.longitude}</td>
                   <td>{item.company ? item.company.name : ""}</td>
                   <td>
-                  <NavLink to={'/windfarms/' +  item.id}  element={<item />}  >Edit</NavLink> <> </>{"    "}<></>
-                  <NavLink to={'/windfarms/' +  item.id}  element={<item />}  >Delete</NavLink> <> </>{"    "}<></>
+                    <NavLink to={"/windfarms/" + item.id} element={<item />}>
+                      Edit
+                    </NavLink>{" "}
+                    <> </>
+                    {"    "}
+                    <></>
+                    <NavLink to={"/windfarms/" + item.id} element={<item />}>
+                      Delete
+                    </NavLink>{" "}
+                    <> </>
+                    {"    "}
+                    <></>
                   </td>
                 </tr>
               ))}

@@ -5,7 +5,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Scrollbars } from "react-custom-scrollbars";
 import expandLeft from "resources/images/expandleft.ico";
 
-const Header = ({
+const SubHeader = ({
   title = "",
   actions = [
     { text: "showMaps", path: "/" },
@@ -26,16 +26,7 @@ const Header = ({
     <nav>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid pr-5">
-          <button
-            type="button"
-            id="sidebarCollapse"
-            className="navbar-brand  btn btn-info"
-            onClick={toogleNavbar}
-          >  
-             <img   alt="as" src={expandLeft} 
-              style={{ width: "25px", height: "25px" }} />
-          </button>
-          <h3>{title}</h3>
+         <h4>{title}</h4>
           <ul className="navbar-nav ">
             {actions.map((item) => (
               <li className="nav-link">
@@ -44,13 +35,7 @@ const Header = ({
                 </NavLink>
               </li>
             ))}
-            {defaultActions.map((item) => (
-              <li className="nav-link">
-                <NavLink to={item.path} activeClassName="active">
-                  {item.text}
-                </NavLink>
-              </li>
-            ))}
+           
           </ul>
         </div>
       </nav>
@@ -58,4 +43,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default SubHeader;
