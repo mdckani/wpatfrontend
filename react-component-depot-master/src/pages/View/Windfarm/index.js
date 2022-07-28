@@ -7,11 +7,10 @@ import AppConfig from "App.config";
 import axios from "axios";
 import { NavLink } from "react-router-dom";
 import DataTable from "pages/DataTable";
-import {Route, Link, Routes, useParams} from 'react-router-dom';
+import { Route, Link, Routes, useParams } from "react-router-dom";
 import Form from "pages/Form";
 
-const Windfarm  = () => {
-  const url = "http://localhost:8090/windturbines";
+const Windfarm = () => {
   const headers = [
     { name: "No#", field: "id", sortable: true },
     { name: "Name", field: "name", sortable: true },
@@ -19,17 +18,15 @@ const Windfarm  = () => {
     { name: "Longitude", field: "longitude", sortable: true },
     { name: "Company", field: "company.name", sortable: true },
     { name: "", field: "", sortable: true },
-  ];const params = useParams();
-debugger;
-  console.log(params);
+  ];
+  const params = useParams();
+  const url = "windfarms/" + params.id;
   return (
     <>
-      <Header title="Windfarm" /> 
-       <DataTable url={url} headers={headers} />
-
-       <Form></Form>
+      <Header title="Windfarm" />
+      <Form url={url}></Form>
     </>
   );
 };
 
-export default Windfarm ;
+export default Windfarm;

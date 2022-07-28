@@ -10,7 +10,7 @@ import { NavLink } from "react-router-dom";
 import DataTable from "pages/DataTable";
 
 const Windfarms = () => {
-  const url = "http://localhost:8090/windturbines";
+  const url = "windfarms";
   const headers = [
     { name: "No#", field: "id", sortable: true },
     { name: "Name", field: "name", sortable: true },

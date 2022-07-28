@@ -1,0 +1,41 @@
+.formpage{
+padding: 25px;
+
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+}
+.left {
+    width: 50%;
+    height: 100%;
+ }
+
+ 
+.right {
+    height: 100%;
+}
+.right .top {
+    height: 60%;
+    width: 100%;
+    background: #68a;
+    vertical-align: top;
+}
+.right .bottom {
+    height: 40%;
+    width: 100%;
+    background: #86a;
+    vertical-align: bottom;
+}
+.block {
+    width: 50px;
+    height: 50px;
+    background: black;
+    display: inline-block;
+}
+.filler {
+    height: 100%;
+    background: red;
+    display: inline-block;
+}

@@ -4,7 +4,7 @@ import { TableHeader, Pagination, Search } from "components/DataTable";
 import useFullPageLoader from "hooks/useFullPageLoader";
 import ExternalInfo from "components/ExternalInfo";
 import AppConfig from "App.config";
-import axios from "axios";
+import Axios from "axios";
 import { NavLink } from "react-router-dom";
 
 const DataTable = (props) => {
@@ -17,24 +17,26 @@ const DataTable = (props) => {
 
   const ITEMS_PER_PAGE = 50;
 
-
-
   useEffect(() => {
     const getData = () => {
-      showLoader();
-      axios
-        .get(props.url)
+      showLoader();     
+      console.log("AppConfig.backendApi" );
+
+      console.log(AppConfig.backendApi );
+
+      Axios.get(AppConfig.backendApi + props.url)
         .then((resp) => {
           let result = resp.data;
           setItems(result);
-          hideLoader();
         })
-        .catch((error) => {
+        .catch(({ response }) => {
+          console.log(response);
           setItems([]);
+        })
+        .finally(() => {
           hideLoader();
         });
-    };
-
+    }; 
     getData();
   }, []);
 
@@ -68,8 +70,6 @@ const DataTable = (props) => {
 
   return (
     <>
-    
-
       <div className="row w-100">
         <div className="col mb-3 col-12 text-center">
           <div className="row">

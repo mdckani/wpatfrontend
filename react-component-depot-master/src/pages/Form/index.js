@@ -7,137 +7,266 @@ import AppConfig from "App.config";
 import useButtonLoader from "hooks/useButtonLoader";
 import Axios from "axios";
 import ExternalInfo from "components/ExternalInfo";
+import useFullPageLoader from "hooks/useFullPageLoader";
+import "./Form.css";
+import classes from "./Form.css";
 
-const Form = () => {
-    const [PasswordInputType, ToggleIcon] = usePasswordToggle();
-    const [element, setLoading] = useButtonLoader("Create Account", "Creating");
+const Form = (props) => {
+  const [item, setItem] = useState({});
+  const [loader, showLoader, hideLoader] = useFullPageLoader();
+  const [error, setError] = useState("");
 
-    const [token, setToken] = useState("");
-    const [error, setError] = useState("");
-    const captcha = useRef();
+  const [element, setLoading] = useButtonLoader("Save", "Saving");
+  const nameInputRef = useRef();
+  const unusedGlassFiberInputRef = useRef();
+  const noOfFlassFiberInputRef = useRef();
+  const glassFiberInputRef = useRef();
+  const bothLightConnectionInputRef = useRef();
+  const companyNameInputRef = useRef();
+//  const companyPhoneNumberInputRef = useRef();
+ // const compamyEmailInputRef = useRef();
+  const companyAddressInputRef = useRef();
+  const companyZipCodeInputRef = useRef();
+  const companyCityInputRef = useRef();
+  const acquisitionStatusInputRef = useRef();  
+  const latitudeInputRef = useRef();
+  const longitudeInputRef = useRef();
 
-    const onSignUp = () => {
-        if (!token) {
-            setError("You must verify the captcha");
-            return;
-        }
+  useEffect(() => {
+    const getData = () => {
+      showLoader();
 
-        setError("");
-        setLoading(true);
-
-        Axios.post(AppConfig.api + "user/signup-with-hcaptcha", {
-            token,
-            email: "ghjsfgjs@fgdg.dsgds"
+      console.log(AppConfig.backendApi);
+      Axios.get(AppConfig.backendApi + props.url)
+        .then((resp) => {
+          let result = resp.data;
+          setItem(result);
         })
-            .then(resp => {
-                alert("Sign up success");
-            })
-            .catch(({ response }) => {
-                setError(response.data.error);
-            })
-            .finally(() => {
-                captcha.current.resetCaptcha();
-                setToken("");
-                setLoading(false);
-            });
+        .catch(({ response }) => {
+          console.log(response);
+          setItem([]);
+        })
+        .finally(() => {
+          hideLoader();
+        });
+    };
+    getData();
+  }, []);
+
+  const onSave = () => {};
+  const onCancel = () => {};
+
+  const submitHandler= (event) =>  {
+    event.preventDefault(); 
+
+    const newData = {
+      acquisitionStatus: { id: 1, name: "Verloren" },
+      company: { id: 1, name: "Oseter" },
+      errorStatus: { id: 1, name: "Offline" },
+      id: item.id,
+      installationStatus: { id: 3, name: "commisioned" },
+      latitude: latitudeInputRef.current.value,
+      longitude: longitudeInputRef.current.value,
+      name: nameInputRef.current.value,
     };
 
-    return (
-        <>
-            <Header title="Form Form" />
+    showLoader();
+    console.log(AppConfig.backendApi);
+    Axios.update(AppConfig.backendApi + props.url, newData)
+      .then((resp) => {
+        let result = resp.data;
+        setItem(result);
+      })
+      .catch(({ response }) => {
+        console.log(response);
+        setItem([]);
+      })
+      .finally(() => {
+        hideLoader();
+      });
+  }
+  return (
+    <>
+      <table class="container">
+        <tr>
+          <td class="right">
+            <div className="card bg-light">
+              <article className="card-body mx-auto">
+                <h4 className="card-title mt-3 text-center">Create Account</h4>
+                <p className="text-center">Windfarm with Id : {item.name}</p>
 
-            <ExternalInfo page="hcaptcha" />
-
-            <div className="row justify-content-center">
-                <div className="col-lg-6 text-center">
-                    <div className="card bg-light">
-                        <article
-                            className="card-body mx-auto"
-                            style={{ maxWidth: "400px" }}
-                        >
-                            <h4 className="card-title mt-3 text-center">
-                                Create Account
-                            </h4>
-                            <p className="text-center">
-                                Get started with your free account
-                            </p>
-
-                            <form>
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon="user" />
-                                        </span>
-                                    </div>
-                                    <input
-                                        name=""
-                                        className="form-control"
-                                        placeholder="Full name"
-                                        type="text"
-                                    />
-                                </div>
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon="envelope" />
-                                        </span>
-                                    </div>
-                                    <input
-                                        name=""
-                                        className="form-control"
-                                        placeholder="Email address"
-                                        type="email"
-                                    />
-                                </div>
-
-                                <div className="form-group input-group">
-                                    <div className="input-group-prepend">
-                                        <span className="input-group-text">
-                                            <FontAwesomeIcon icon="lock" />
-                                        </span>
-                                    </div>
-                                    <input
-                                        className="form-control"
-                                        placeholder="Create password"
-                                        type={PasswordInputType}
-                                    />
-                                    <span className="password-toogle-icon">
-                                        {ToggleIcon}
-                                    </span>
-                                </div>
-
-                                <div className="form-group">
-                                    <HCaptcha
-                                        ref={captcha}
-                                        sitekey={AppConfig.hCaptchaSiteToken}
-                                        onVerify={token => setToken(token)}
-                                        onExpire={e => setToken("")}
-                                    />
-                                </div>
-                                <div className="form-group">
-                                    {error && (
-                                        <p className="text-danger">{error}</p>
-                                    )}
-                                    <button
-                                        type="button"
-                                        className="btn btn-primary btn-block"
-                                        ref={element}
-                                        onClick={() => onSignUp()}
-                                    >
-                                        {" "}
-                                        Create Account{" "}
-                                    </button>
-                                </div>
-                                <p className="text-center">
-                                    Have an account? <a href="">Log In</a>{" "}
-                                </p>
-                            </form>
-                        </article>
+                <form>
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Name
+                      </span>
                     </div>
-                </div>
+                    <input
+                      ref={nameInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Unused Glass Fiber
+                      </span>
+                    </div>
+                    <input
+                      ref={unusedGlassFiberInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Number of Glass Fiber
+                      </span>
+                    </div>
+                    <input
+                      ref={unusedGlassFiberInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Glass Fiber
+                      </span>
+                    </div>
+                    <input
+                      ref={glassFiberInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Both Light Connection
+                      </span>
+                    </div>
+                    <input
+                      ref={bothLightConnectionInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+                </form>
+              </article>
             </div>
-        </>
-    );
+          </td>
+          <td class="left">
+            <div className="card bg-light">
+              <article className="card-body mx-auto">
+                <h4 className="card-title mt-3 text-center">Create Account</h4>
+                <p className="text-center">Windfarm with Id : {item.name}</p>
+
+                <form>
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Company Name
+                      </span>
+                    </div>
+                    <input
+                      ref={companyNameInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Company Address
+                      </span>
+                    </div>
+                    <input
+                      ref={companyAddressInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Company Zip Code
+                      </span>
+                    </div>
+                    <input
+                      ref={companyZipCodeInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Company City
+                      </span>
+                    </div>
+                    <input
+                  //    value={item.company.name}
+                      ref={companyCityInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+
+                  <div className="form-group input-group">
+                    <div className="input-group-prepend">
+                      <span className="form-control input-group-text">
+                        Acquisition Status
+                      </span>
+                    </div>
+                    <input
+                   //   value={item.acquisitionStatus.id}
+                      ref={acquisitionStatusInputRef}
+                      className="form-control"
+                      type="text"
+                    />
+                  </div>
+                </form>
+              </article>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div className="card bg-light">
+        <article className="card-body mx-auto">
+          <button
+            type="button"
+            className="btn btn-outline-info mr-2"
+            onClick={submitHandler}
+            ref={element}
+          >
+            <i className="fas fa-save mr-2"></i>
+            Save
+          </button>
+          <button
+            type="button"
+            className="btn btn-outline-danger"
+            onClick={onCancel}
+          >
+            <i className="fas fa-trash mr-2"></i>
+            Cancel
+          </button>
+        </article>
+      </div>
+    </>
+  );
 };
 
 export default Form;
