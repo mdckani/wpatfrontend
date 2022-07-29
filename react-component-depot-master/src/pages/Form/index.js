@@ -12,26 +12,26 @@ import "./Form.css";
 import classes from "./Form.css";
 
 const Form = (props) => {
-  const [item, setItem] = useState({});
+  const [item, setItem] = useState(props.item);
   const [loader, showLoader, hideLoader] = useFullPageLoader();
   const [error, setError] = useState("");
 
   const [element, setLoading] = useButtonLoader("Save", "Saving");
   const nameInputRef = useRef();
   const unusedGlassFiberInputRef = useRef();
-  const noOfFlassFiberInputRef = useRef();
+  const noOfGlassFiberInputRef = useRef();
   const glassFiberInputRef = useRef();
   const bothLightConnectionInputRef = useRef();
   const companyNameInputRef = useRef();
-//  const companyPhoneNumberInputRef = useRef();
- // const compamyEmailInputRef = useRef();
+  //  const companyPhoneNumberInputRef = useRef();
+  // const compamyEmailInputRef = useRef();
   const companyAddressInputRef = useRef();
   const companyZipCodeInputRef = useRef();
   const companyCityInputRef = useRef();
-  const acquisitionStatusInputRef = useRef();  
+  const acquisitionStatusInputRef = useRef();
   const latitudeInputRef = useRef();
   const longitudeInputRef = useRef();
-
+  /*
   useEffect(() => {
     const getData = () => {
       showLoader();
@@ -51,13 +51,17 @@ const Form = (props) => {
         });
     };
     getData();
-  }, []);
+  }, []);*/
 
   const onSave = () => {};
   const onCancel = () => {};
-
-  const submitHandler= (event) =>  {
-    event.preventDefault(); 
+  const handleChange = (e) => {
+    setItem((prevState) => {
+      prevState["name"] = e.target.value;
+    });
+  };
+  const submitHandler = (event) => {
+    event.preventDefault();
 
     const newData = {
       acquisitionStatus: { id: 1, name: "Verloren" },
@@ -84,7 +88,14 @@ const Form = (props) => {
       .finally(() => {
         hideLoader();
       });
-  }
+  };
+
+  const onChange = (e) => {
+    setItem({
+      ...item,
+      [e.target.name]: e.target.value,
+    });
+  };
   return (
     <>
       <table class="container">
@@ -103,9 +114,12 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      value={item.name}
+                      name="name"
                       ref={nameInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -116,9 +130,15 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      value={item.unusedGlassFiber}
                       ref={unusedGlassFiberInputRef}
                       className="form-control"
                       type="text"
+                      name="unusedGlassFiber"
+                      onChange={onChange}
+                      /*    onChange={(e) =>
+                        onTodoChange("unusedGlassFiber", e.target.value)
+                      }*/
                     />
                   </div>
 
@@ -129,9 +149,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
-                      ref={unusedGlassFiberInputRef}
+                      name="noOfGlassFiber"
+                      ref={noOfGlassFiberInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -142,9 +164,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      name="glassFiber"
                       ref={glassFiberInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -155,9 +179,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      name="bothLightConnection"
                       ref={bothLightConnectionInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
                 </form>
@@ -178,9 +204,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      name="companyName"
                       ref={companyNameInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -191,9 +219,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      name="companyZipCode"
                       ref={companyAddressInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -204,9 +234,11 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
+                      name="companyZipCode"
                       ref={companyZipCodeInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -217,10 +249,12 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
-                  //    value={item.company.name}
+                      name="companyCity"
+                      //    value={item.company.name}
                       ref={companyCityInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
 
@@ -231,10 +265,12 @@ const Form = (props) => {
                       </span>
                     </div>
                     <input
-                   //   value={item.acquisitionStatus.id}
+                      name="acquisitionStatus"
+                      //   value={item.acquisitionStatus.id}
                       ref={acquisitionStatusInputRef}
                       className="form-control"
                       type="text"
+                      onChange={onChange}
                     />
                   </div>
                 </form>

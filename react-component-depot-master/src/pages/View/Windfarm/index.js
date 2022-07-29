@@ -1,15 +1,11 @@
-import React, { useEffect, useState, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "components/Header";
-import { TableHeader, Pagination, Search } from "components/DataTable";
 import useFullPageLoader from "hooks/useFullPageLoader";
-import ExternalInfo from "components/ExternalInfo";
 import AppConfig from "App.config";
-import axios from "axios";
-import { NavLink } from "react-router-dom";
-import DataTable from "pages/DataTable";
-import { Route, Link, Routes, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Form from "pages/Form";
-
+import useButtonLoader from "hooks/useButtonLoader";
+import Axios from "axios";
 const Windfarm = () => {
   const headers = [
     { name: "No#", field: "id", sortable: true },
@@ -21,10 +17,34 @@ const Windfarm = () => {
   ];
   const params = useParams();
   const url = "windfarms/" + params.id;
+
+  const [item, setItem] = useState( );
+  const [loader, showLoader, hideLoader] = useFullPageLoader();
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const getData = () => {
+      showLoader();
+      console.log(AppConfig.backendApi);
+      Axios.get(AppConfig.backendApi + url)
+        .then((resp) => {
+          let result = resp.data;
+          setItem(result);
+        })
+        .catch(({ response }) => {
+          console.log(response);
+          setItem(null);
+        })
+        .finally(() => {
+          hideLoader();
+        });
+    };
+    getData();
+  }, []);
   return (
     <>
       <Header title="Windfarm" />
-      <Form url={url}></Form>
+      {item &&  <Form item={item}></Form>}
     </>
   );
 };
