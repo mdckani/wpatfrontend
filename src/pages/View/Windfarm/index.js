@@ -44,7 +44,7 @@ const Windfarm = () => {
   return (
     <>
       <Header title="Windfarm" />
-      {item &&  <Form item={item}></Form>}
+      {item &&  <Form item={item} props=""></Form>}
     </>
   );
 };

@@ -64,19 +64,26 @@ const Form = (props) => {
     event.preventDefault();
 
     const newData = {
-      acquisitionStatus: { id: 1, name: "Verloren" },
-      company: { id: 1, name: "Oseter" },
-      errorStatus: { id: 1, name: "Offline" },
       id: item.id,
-      installationStatus: { id: 3, name: "commisioned" },
-      latitude: latitudeInputRef.current.value,
-      longitude: longitudeInputRef.current.value,
-      name: nameInputRef.current.value,
+      acquisitionStatus: (item.acquisitionStatus)?item.acquisitionStatus.id:null,
+      company:  (item.company)?item.company.id:null,
+      errorStatus: (item.errorStatus)?item.errorStatus.id:null,
+      installationStatus: (item.installationStatus)?item.installationStatus.id:null,
+      latitude: item.latitude,
+      longitude: item.longitude,
+      name: item.name,
+      bothLightConnection: item.longitude,
+      glassFiber: item.glassFiber,
+      numberOfGlassFiber: item.numberOfGlassFiber,
+      unusedGlassFiber: item.unusedGlassFiber,
+      geoCoOrdinate: item.geoCoOrdinate,
     };
 
     showLoader();
     console.log(AppConfig.backendApi);
-    Axios.update(AppConfig.backendApi + props.url, newData)
+
+/*
+    Axios.post(AppConfig.backendApi + "windfarms", newData)
       .then((resp) => {
         let result = resp.data;
         setItem(result);
@@ -87,7 +94,29 @@ const Form = (props) => {
       })
       .finally(() => {
         hideLoader();
-      });
+      });*/
+     Axios.post( AppConfig.backendApi + "windfarms",{
+         
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Access-Control-Allow-Methods": "POST",
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+   newData,
+    })
+      .then((resp) => {
+        let result = resp.data;
+        setItem(result);
+      })
+      .catch(({ response }) => {
+        console.log(response);
+        setItem([]);
+      })
+      .finally(() => {
+        hideLoader();
+      }); 
   };
 
   const onChange = (e) => {
