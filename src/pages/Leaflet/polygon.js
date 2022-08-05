@@ -7,11 +7,11 @@ import osm from "./osm-providers";
 import { useRef } from "react";
 import "leaflet/dist/leaflet.css";
 import "leaflet-draw/dist/leaflet.draw.css"; 
-const PolygonMap = () => {
-  const [center, setCenter] = useState({ lat: 24.4539, lng: 54.3773 });
+const PolygonMap = () => { 
+  const [center, setCenter] = useState({ lat:  53.621992 , lng:10.129395});
   const [mapLayers, setMapLayers] = useState([]);
 
-  const ZOOM_LEVEL = 12;
+  const ZOOM_LEVEL = 8;
   const mapRef = useRef();
 
   const _onCreate = (e) => {
