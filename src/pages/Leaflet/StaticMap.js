@@ -37,7 +37,7 @@ const StaticMap = () => {
     <>
       <Header title="React Leaflet - Static Map" />
 
-      <ExternalInfo page="leafletStaticMap" />
+     
 
       <div className="row">
         <div className="col text-center">

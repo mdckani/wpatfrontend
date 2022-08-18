@@ -26,7 +26,7 @@ const AccordionDemo = () => {
         <>
             <Header title="Building Accordion in ReactJS" />
 
-            <ExternalInfo page="accordion" />
+   
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 text-center">

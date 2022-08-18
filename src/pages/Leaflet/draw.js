@@ -30,7 +30,7 @@ const DrawMap = () => {
 
   return (
     <> 
-      <ExternalInfo page="leafletDraw" />
+      
 
       <div className="row">
         <div className="col text-center">
@@ -44,11 +44,11 @@ const DrawMap = () => {
                   onCreated={_created}
                   draw={
                     {
-                      /* rectangle: false,
-                    circle: false,
-                    circlemarker: false,
-                    marker: false,
-                    polyline: false, */
+                     rectangle: true,
+                    circle: true,
+                    circlemarker: true,
+                    marker: true,
+                    polyline: true, 
                     }
                   }
                 />

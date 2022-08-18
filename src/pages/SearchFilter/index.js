@@ -23,7 +23,6 @@ const SearchFilter = () => {
         <>
             <Header title="Country Search (Using useMemo)" />
 
-            <ExternalInfo page="searchFilter" />
 
             <div className="row justify-content-center mt-4">
                 <div className="col-lg-6 text-center">

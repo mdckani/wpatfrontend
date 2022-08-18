@@ -1,17 +1,28 @@
 import React, { useState } from "react";
 import Header from "components/Header";
-
+import L from "leaflet";
 import { Map, TileLayer, FeatureGroup } from "react-leaflet";
+
 import { EditControl } from "react-leaflet-draw";
 import osm from "./osm-providers";
 import { useRef } from "react";
 import "leaflet/dist/leaflet.css";
-import "leaflet-draw/dist/leaflet.draw.css"; 
+import "leaflet-draw/dist/leaflet.draw.css";
+delete L.Icon.Default.prototype._getIconUrl;
+
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+  iconUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-icon.png",
+  shadowUrl:
+    "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/images/marker-shadow.png",
+});
 const PolygonMap = () => {
-  const [center, setCenter] = useState({ lat: 24.4539, lng: 54.3773 });
+  const [center, setCenter] = useState({ lat: 53.621992, lng: 10.129395 });
   const [mapLayers, setMapLayers] = useState([]);
 
-  const ZOOM_LEVEL = 12;
+  const ZOOM_LEVEL = 8;
   const mapRef = useRef();
 
   const _onCreate = (e) => {
@@ -57,11 +68,11 @@ const PolygonMap = () => {
   };
 
   const actions = [//{ text: "showMaps", path: "/" },
-  { text: "Show Table", path: "/windfarms" } ];
+    { text: "Show Table", path: "/windfarms" }];
   return (
     <>
       <Header title="" actions={actions} />
-  
+
       <div className="row">
         <div className="col">
           <Map center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
@@ -72,11 +83,11 @@ const PolygonMap = () => {
                 onEdited={_onEdited}
                 onDeleted={_onDeleted}
                 draw={{
-                  rectangle: false,
-                  polyline: false,
-                  circle: false,
-                  circlemarker: false,
-                  marker: false,
+                  rectangle: true,
+                  circle: true,
+                  circlemarker: true,
+                  marker: true,
+                  polyline: true,
                 }}
               />
             </FeatureGroup>
@@ -86,8 +97,8 @@ const PolygonMap = () => {
               attribution={osm.maptiler.attribution}
             />
           </Map>
-
-          <pre className="text-left">{JSON.stringify(mapLayers, 0, 2)}</pre>
+          {/* <pre className="text-left">{JSON.stringify(mapLayers, 0, 2)}</pre> -->
+          */}
         </div>
       </div>
     </>

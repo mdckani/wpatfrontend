@@ -65,7 +65,6 @@ const PrintMap = () => {
     <>
       <Header title="React Leaflet - Print" />
 
-      <ExternalInfo page="leafletPrint" />
 
       <div className="row">
         <div className="col text-center">

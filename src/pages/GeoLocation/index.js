@@ -18,8 +18,6 @@ const GeoLocation = () => {
         <>
             <Header title="Get user IP and location in ReactJS" />
 
-            <ExternalInfo page="geoLocation" />
-
             <div className="row">
                 <div className="col text-center">
                     <h2>Find my IP and Location</h2>

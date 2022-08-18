@@ -43,8 +43,6 @@ const SimpleTabs = () => {
     <>
       <Header title="Building simple Tab component in react" />
 
-      <ExternalInfo page="tabs" />
-
       <div className="row">
         <div className="col text-center">
           <h2>Tab Component</h2>

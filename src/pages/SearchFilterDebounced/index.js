@@ -28,7 +28,6 @@ const SearchFilterDebounced = () => {
     <>
       <Header title="Country Search - Debounced" />
       
-      <ExternalInfo page="debouncedSearch" />
 
       <div className="row justify-content-center mt-4">
         <div className="col-lg-6 text-center">

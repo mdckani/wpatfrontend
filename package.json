@@ -39,6 +39,7 @@
         "react-router-dom": "^5.1.2",
         "react-scripts": "^5.0.1",
         "react-spring": "^8.0.27",
+        "react-table": "^7.8.0",
         "react-use": "^14.2.0",
         "react-waypoint": "^9.0.2",
         "react-zoom-pan-pinch": "^1.6.1",

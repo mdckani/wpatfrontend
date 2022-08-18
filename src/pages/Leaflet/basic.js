@@ -16,7 +16,7 @@ const BasicMap = () => {
         <>
             <Header title="React Leaflet Map Example" />
 
-            <ExternalInfo page="leafletBasic" />
+         
 
             <div className="row">
                 <div className="col text-center">

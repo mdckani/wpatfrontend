@@ -4,11 +4,9 @@ const GoogleMaps = React.lazy(() => import("pages/GoogleMaps"));
 const ButtonLoadingSpinner = React.lazy(() =>
   import("pages/ButtonLoadingSpinner")
 );
-const OTPBox = React.lazy(() => import("pages/OTPBox"));
 const ContactList = React.lazy(() => import("pages/ContactList"));
 const ReactBasics = React.lazy(() => import("pages/ReactBasics"));
 const AppsLibrary = React.lazy(() => import("pages/AppsLibrary"));
-const VideoPlayers = React.lazy(() => import("pages/VideoPlayers"));
 const DataTable = React.lazy(() => import("pages/DataTable"));
 const Windfarms = React.lazy(() => import("pages/View/Windfarms"));
 const Windfarm  = React.lazy(() => import("pages/View/Windfarm"));
@@ -42,39 +40,14 @@ const UserListTable = React.lazy(() => import("pages/UserListTable"));
 
 const routes = [
   
-  {
-    enabled: true,
-    path: "/button-loader",
-    component: ButtonLoadingSpinner,
-    navbar: "Loading Spinners",
-    child: null,
-  },
-  {
-    enabled: true,
-    path: "/otp-box",
-    component: OTPBox,
-    navbar: "OTP Box",
-    child: null,
-  },
+
+
+
   {
     enabled: true,
     path: "/contact-list",
     component: ContactList,
-    navbar: "Contact List App",
-    child: null,
-  },
-  {
-    enabled: true,
-    path: "/video-players",
-    component: VideoPlayers,
-    navbar: "Video Players",
-    child: null,
-  },
-  {
-    enabled: true,
-    path: "/apps-library/scroll-indicator",
-    component: AppsLibrary,
-    navbar: "Scroll Indicator",
+    navbar: "User Management",
     child: null,
   },
   {
@@ -84,6 +57,23 @@ const routes = [
     navbar: "Signup Form",
     child: null,
   },
+  {
+    enabled: true,
+    path: "/button-loader",
+    component: ButtonLoadingSpinner,
+    navbar: "Loading Spinners",
+    child: null,
+  },
+  {
+    enabled: true,
+    path: "/windfarms",
+    component: Windfarms,
+    navbar: "Data Table",
+    child: null,
+  },
+
+
+
   {
     enabled: true,
     path: "/hooks-demo",
@@ -100,14 +90,8 @@ const routes = [
   },
    {
     enabled: true,
-    path: "/windfarms/:id",
+    path: "/lcus",
     component: Windfarm,
-    navbar: "Data Table",
-    child: null,
-  }, {
-    enabled: true,
-    path: "/windfarms",
-    component: Windfarms,
     navbar: "Data Table",
     child: null,
   },
@@ -115,7 +99,14 @@ const routes = [
     enabled: true,
     path: "/file-upload",
     component: FileUpload,
-    navbar: "File Upload",
+    navbar: "Insert Data",
+    child: null,
+  },
+  {
+    enabled: true,
+    path: "/file-downloader",
+    component: FileDownloader,
+    navbar: "File Downloader",
     child: null,
   },
   {
@@ -195,13 +186,7 @@ const routes = [
     navbar: "Image Zoom",
     child: null,
   },
-  {
-    enabled: true,
-    path: "/file-downloader",
-    component: FileDownloader,
-    navbar: "File Downloader",
-    child: null,
-  },
+ 
   {
     enabled: true,
     path: "/tree-structure",
@@ -286,7 +271,8 @@ const routes = [
     component: UserListTable,
     navbar: "User List Table",
     child: null,
-  },
+  }, 
+ 
   {
     enabled: true,
     path: "/react-basics",

@@ -40,7 +40,7 @@ const MarkersMap = () => {
     <>
       <Header title="React Leaflet Map Example" />
 
-      <ExternalInfo page="leafletCurrentLocation" />
+      
 
       <div className="row">
         <div className="col text-center">

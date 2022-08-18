@@ -77,7 +77,7 @@ const TreeList = () => {
   return (
     <>
       <Header title="Tree Data Visualization" />
-      <ExternalInfo page="treeList" />
+      
 
       <div className="row">
         <div className="col text-center">

@@ -75,7 +75,7 @@ const DataTable2 = () => {
         <>
             <Header title="Building a data table in react" />
 
-            <ExternalInfo page="datatable" />
+      
 
             <div className="row w-100">
                 <div className="col mb-3 col-12 text-center">
