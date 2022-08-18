@@ -23,7 +23,7 @@ const HooksDemo = () => {
         <>
             <Header title="Hooks demo" />
 
-            <ExternalInfo page="hooks" />
+     
 
             <div class="separator">Hook 1: Unsaved changes warning Hook</div>
 

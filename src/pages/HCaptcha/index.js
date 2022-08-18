@@ -46,7 +46,7 @@ const Signup = () => {
         <>
             <Header title="Signup Form" />
 
-            <ExternalInfo page="hcaptcha" />
+         
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 text-center">

@@ -39,7 +39,6 @@ const CancelableFetchRequest = () => {
     <>
       <Header title="Canelable fetch request (Cancelable File Upload)" />
       
-      <ExternalInfo page="cancelableFetch" />
 
       <div className="row justify-content-center bg-light">
         <div className="col-md-5 text-center">

@@ -59,17 +59,16 @@ const FileUpload = () => {
 
     return (
         <>
-            <Header title="File upload in ReactJS" />
+            <Header title="File upload " />
 
-            <ExternalInfo page="fileupload" />
+         
 
             <div className="row justify-content-center bg-light">
                 <div className="col-md-6 text-center">
-                    <h2>Upload your profile picture</h2>
+                 
 
                     <p>
-                        You can upload a sample file to see the progress bar
-                        with cancel file upload button
+                       
                     </p>
                     <p>
                         <input

@@ -42,8 +42,7 @@ const InfiniteScrolling = () => {
         <>
             <Header title="Infinite Scrolling Pagination" />
 
-            <ExternalInfo page="infniteScrolling" />
-
+            
             <div className="row">
                 <div className="col text-center">
                     <h2>Infinite Scrolling Loader!!!</h2>

@@ -12,7 +12,7 @@ const AutocompletePage = () => {
         <>
             <Header title="Building An Auto complete Comonent" />
 
-            <ExternalInfo page="autocomplete" />
+        
 
             <div className="row">
                 <div className="col text-center">

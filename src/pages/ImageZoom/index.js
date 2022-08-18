@@ -14,7 +14,6 @@ const ImageZoom = () => {
     <>
       <Header title="Zoomable image controller" />
 
-      <ExternalInfo page="imageZoom" />
 
       <div className="row">
         <div className="col text-center">

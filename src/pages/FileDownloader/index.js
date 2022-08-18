@@ -43,7 +43,7 @@ const FileDownloader = () => {
     <>
       <Header title="File downloader with progress bar" />
 
-      <ExternalInfo page="fileDownloader" />
+
 
       <div className="row">
         <div className="col text-center">

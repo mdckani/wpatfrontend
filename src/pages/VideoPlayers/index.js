@@ -13,7 +13,7 @@ const VideoPlayer = () => {
         <>
             <Header title="Floating Youtube Video Players" />
 
-            <ExternalInfo page="floatingYoutubePlayer" />
+           
 
             <div className="row">
                 <div className="col text-center">

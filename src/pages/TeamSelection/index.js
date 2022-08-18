@@ -42,7 +42,7 @@ const TeamSelection = () => {
     <>
       <Header title="Team Selection (Drag And Drop)" />
 
-      <ExternalInfo page="dnd" />
+    
 
       <div className="row">
         <div className="col text-center">

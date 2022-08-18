@@ -25,7 +25,7 @@ const MarkersMap = () => {
     <>
       <Header title="React Leaflet Map Example" />
 
-      <ExternalInfo page="leafletMarker" />
+    
 
       <div className="row">
         <div className="col text-center">

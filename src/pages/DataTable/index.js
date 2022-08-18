@@ -6,6 +6,9 @@ import ExternalInfo from "components/ExternalInfo";
 import AppConfig from "App.config";
 import Axios from "axios";
 import { NavLink } from "react-router-dom";
+import MaterialTable from 'material-table';
+import GetAppIcon from '@material-ui/icons/GetApp';
+import AddIcon from '@material-ui/icons/Add';
 
 const DataTable = (props) => {
   const [items, setItems] = useState([]);
@@ -16,7 +19,7 @@ const DataTable = (props) => {
   const [sorting, setSorting] = useState({ field: "", order: "" });
 
   const ITEMS_PER_PAGE = 50;
-
+  
   useEffect(() => {
     const getData = () => {
       showLoader();     
@@ -40,92 +43,57 @@ const DataTable = (props) => {
     getData();
   }, []);
 
-  const itemsData = useMemo(() => {
-    let computedItems = items;
-
-    if (search) {
-      computedItems = computedItems.filter(
-        (item) =>
-          item.name.toLowerCase().includes(search.toLowerCase()) ||
-          item.email.toLowerCase().includes(search.toLowerCase())
-      );
-    }
-
-    setTotalItems(computedItems.length);
-
-    //Sorting items
-    if (sorting.field) {
-      const reversed = sorting.order === "asc" ? 1 : -1;
-      computedItems = computedItems.sort(
-        (a, b) => reversed * a[sorting.field].localeCompare(b[sorting.field])
-      );
-    }
-
-    //Current Page slice
-    return computedItems.slice(
-      (currentPage - 1) * ITEMS_PER_PAGE,
-      (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
-    );
-  }, [items, currentPage, search, sorting]);
-
+ 
   return (
     <>
-      <div className="row w-100">
-        <div className="col mb-3 col-12 text-center">
-          <div className="row">
-            <div className="col-md-6">
-              <Pagination
-                total={totalItems}
-                itemsPerPage={ITEMS_PER_PAGE}
-                currentPage={currentPage}
-                onPageChange={(page) => setCurrentPage(page)}
-              />
-            </div>
-            <div className="col-md-6 d-flex flex-row-reverse">
-              <Search
-                onSearch={(value) => {
-                  setSearch(value);
-                  setCurrentPage(1);
-                }}
-              />
-            </div>
-          </div>
 
-          <table className="table table-striped">
-            <TableHeader
-              headers={props.headers}
-              onSorting={(field, order) => setSorting({ field, order })}
-            />
-            <tbody>
-              {itemsData.map((item) => (
-                <tr>
-                  <th scope="row" key={item.id}>
-                    {item.id}
-                  </th>
-                  <td>{item.name}</td>
-                  <td>{item.latitude}</td>
-                  <td>{item.longitude}</td>
-                  <td>{item.company ? item.company.name : ""}</td>
-                  <td>
-                    <NavLink to={"/windfarms/" + item.id} element={<item />}>
-                      Edit
-                    </NavLink>{" "}
-                    <> </>
-                    {"    "}
-                    <></>
-                    <NavLink to={"/windfarms/" + item.id} element={<item />}>
-                      Delete
-                    </NavLink>{" "}
-                    <> </>
-                    {"    "}
-                    <></>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
+
+<MaterialTable columns={props.columns} data={items}
+        editable={{
+          onRowAdd: (newRow) => new Promise((resolve, reject) => {
+            setItems([...items, newRow])
+
+            setTimeout(() => resolve(), 500)
+          }),
+          onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
+            const updatedData = [...items]
+            updatedData[oldRow.items.id] = newRow
+            setItems(updatedData)
+            setTimeout(() => resolve(), 500)
+          }),
+          onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
+            const updatedData = [...items]
+            updatedData.splice(selectedRow.items.id, 1)
+            setItems(updatedData)
+            setTimeout(() => resolve(), 1000)
+
+          })
+        }}
+        actions={[
+          {
+            icon: () => <GetAppIcon />,
+            tooltip: "Click me",
+            onClick: (e, data) => console.log(data),
+            // isFreeAction:true
+          }
+        ]}
+        onSelectionChange={(selectedRows) => console.log(selectedRows)}
+        options={{
+          sorting: true, search: true,
+          searchFieldAlignment: "right", searchAutoFocus: true, searchFieldVariant: "standard",
+          filtering: true, paging: true, pageSizeOptions: [2, 5, 10, 20, 25, 50, 100], pageSize: 5,
+          paginationType: "stepped", showFirstLastPageButtons: false, paginationPosition: "both", exportButton: true,
+          exportAllData: true, exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1, selection: true,
+          showSelectAllCheckbox: true, showTextRowsSelected: false, selectionProps: rowData => ({
+            disabled: rowData.id == null,
+            // color:"primary"
+          }),
+          grouping: true, columnsButton: true,
+          rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
+          headerStyle: { background: "#f44336",color:"#fff"}
+        }}
+        title={props.title}
+        icons={{ Add: () => <AddIcon /> }} /> 
       {loader}
     </>
   );

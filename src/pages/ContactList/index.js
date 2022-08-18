@@ -26,18 +26,14 @@ const ContactList = () => {
 
     return (
         <>
-            <Header title="Redux CRUD Operations (Create, Read, Update and Delete)" />
+            <Header title=" User Management" />
 
-            <ExternalInfo page="contactListCRUD" />
+           
 
             <div className="row">
                 <div className="col text-center">
-                    <h2>Manage contacts!!!</h2>
-                    <p>
-                        This demo performs CRUD operation in redux store. You
-                        can add, edit and delete a contact in the below demo
-                    </p>
-
+                 
+                   
                     <div className="col-sm-6 offset-sm-3">
                         <div className="card">
                             <div className="card-header bg-dark text-white text-left">

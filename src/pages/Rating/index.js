@@ -10,7 +10,7 @@ const Rating = () => {
     <>
       <Header title="Star rating page" />
 
-      <ExternalInfo page="starRating" />
+   
 
       <div className="row">
         <div className="col text-center">

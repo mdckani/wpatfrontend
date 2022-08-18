@@ -49,7 +49,7 @@ const ReCaptchaSignup = () => {
         <>
             <Header title="Signup Form with reCaptcha" />
 
-            <ExternalInfo page="recaptcha" />
+     
 
             <div className="row justify-content-center">
                 <div className="col-lg-6 text-center">
