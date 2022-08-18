@@ -8,8 +8,8 @@ const ContactList = React.lazy(() => import("pages/ContactList"));
 const ReactBasics = React.lazy(() => import("pages/ReactBasics"));
 const AppsLibrary = React.lazy(() => import("pages/AppsLibrary"));
 const DataTable = React.lazy(() => import("pages/DataTable"));
-const Windfarms = React.lazy(() => import("pages/View/Windfarms"));
-const Windfarm  = React.lazy(() => import("pages/View/Windfarm"));
+const Windturbines = React.lazy(() => import("pages/View/Windturbines"));
+const Windturbine  = React.lazy(() => import("pages/View/Windturbine"));
 const Signup = React.lazy(() => import("pages/Signup"));
 const HooksDemo = React.lazy(() => import("pages/HooksDemo"));
 const FileUpload = React.lazy(() => import("pages/FileUpload"));
@@ -66,8 +66,8 @@ const routes = [
   },
   {
     enabled: true,
-    path: "/windfarms",
-    component: Windfarms,
+    path: "/windturbines",
+    component: Windturbines,
     navbar: "Data Table",
     child: null,
   },
@@ -91,7 +91,7 @@ const routes = [
    {
     enabled: true,
     path: "/lcus",
-    component: Windfarm,
+    component: Windturbine,
     navbar: "Data Table",
     child: null,
   },

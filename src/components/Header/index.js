@@ -15,8 +15,8 @@ const Header = ({
 }) => {
   const dispatch = useDispatch();
   const defaultActions = [
-    { text: "convertKML", path: "/" },
-    { text: "signOut", path: "/signOut" },
+    { text: "Convert KML", path: "/" },
+    { text: "Sign Out", path: "/signOut" },
   ];
   const toogleNavbar = () => {
     return dispatch(toggleNavbar());

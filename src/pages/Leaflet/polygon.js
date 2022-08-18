@@ -68,7 +68,7 @@ const PolygonMap = () => {
   };
 
   const actions = [//{ text: "showMaps", path: "/" },
-    { text: "Show Table", path: "/windfarms" }];
+    { text: "Show Table", path: "/windturbines" }];
   return (
     <>
       <Header title="" actions={actions} />

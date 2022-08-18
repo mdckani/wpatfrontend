@@ -83,7 +83,7 @@ const Form = (props) => {
     console.log(AppConfig.backendApi);
 
 /*
-    Axios.post(AppConfig.backendApi + "windfarms", newData)
+    Axios.post(AppConfig.backendApi + "windturbines", newData)
       .then((resp) => {
         let result = resp.data;
         setItem(result);
@@ -95,7 +95,7 @@ const Form = (props) => {
       .finally(() => {
         hideLoader();
       });*/
-     Axios.post( AppConfig.backendApi + "windfarms",{
+     Axios.post( AppConfig.backendApi + "windturbines",{
          
       method: "POST",
       headers: {
@@ -133,7 +133,7 @@ const Form = (props) => {
             <div className="card bg-light">
               <article className="card-body mx-auto">
                 <h4 className="card-title mt-3 text-center">Create Account</h4>
-                <p className="text-center">Windfarm with Id : {item.name}</p>
+                <p className="text-center">Windturbine with Id : {item.name}</p>
 
                 <form>
                   <div className="form-group input-group">
@@ -223,7 +223,7 @@ const Form = (props) => {
             <div className="card bg-light">
               <article className="card-body mx-auto">
                 <h4 className="card-title mt-3 text-center">Create Account</h4>
-                <p className="text-center">Windfarm with Id : {item.name}</p>
+                <p className="text-center">Windturbine with Id : {item.name}</p>
 
                 <form>
                   <div className="form-group input-group">
