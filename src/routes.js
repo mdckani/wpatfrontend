@@ -10,6 +10,8 @@ const AppsLibrary = React.lazy(() => import("pages/AppsLibrary"));
 const DataTable = React.lazy(() => import("pages/DataTable"));
 const Windturbines = React.lazy(() => import("pages/View/Windturbines"));
 const Windturbine  = React.lazy(() => import("pages/View/Windturbine"));
+const Lcus = React.lazy(() => import("pages/View/Lcus"));
+const Lcu = React.lazy(() => import("pages/View/Lcu"));
 const Signup = React.lazy(() => import("pages/Signup"));
 const HooksDemo = React.lazy(() => import("pages/HooksDemo"));
 const FileUpload = React.lazy(() => import("pages/FileUpload"));
@@ -71,7 +73,13 @@ const routes = [
     navbar: "Data Table",
     child: null,
   },
-
+  {
+    enabled: true,
+    path: "/lcus",
+    component: Lcus,
+    navbar: "Data Table",
+    child: null,
+  },
 
 
   {
