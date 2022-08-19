@@ -9,8 +9,8 @@ import axios from "axios";
 import { NavLink } from "react-router-dom";
 import DataTable from "pages/DataTable";
 
-const Lcus = () => {
-  const url = "lcus";
+const Receivers = () => {
+  const url = "receivers";
   const columns = [ 
    
 
@@ -24,7 +24,7 @@ const Lcus = () => {
      /* { title: "Serial Number", field: "serialNumber", filterPlaceholder: "filter" },
       { title: "Acquistiontion Status", field: "acquistiontionStatus", filterPlaceholder: "filter" },
      
-      { title: "Lcu Height", field: "lcuHeight", filterPlaceholder: "filter" },
+      { title: "Receiver Height", field: "receiverHeight", filterPlaceholder: "filter" },
       { title: "Installation Date", field: "installationDate", filterPlaceholder: "filter" },
       { title: "Company Name", field: "companyName", filterPlaceholder: "filter" },
       { title: "Company Phone Number", field: "companyPhoneNumber", filterPlaceholder: "filter" },
@@ -50,10 +50,9 @@ const Lcus = () => {
     ];
 
   const actions = [{ text: "Show Map", path: "/" }];
-
   const subActions = [
     { text: "Windturbines", path: "/windturbines" },
-    { text: "Receivers", path: "/receivers" },
+    { text: "Lcus", path: "/lcus" },
     { text: "Substations", path: "/substations" },
     { text: "Radars", path: "/radars" },
     { text: "Comments", path: "/comments" }
@@ -64,11 +63,11 @@ const Lcus = () => {
   ];
   return (
     <>
-      <Header title="Lcus" actions={actions} />
+      <Header title="Receivers" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Lcus" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Receivers" />
     </>
   );
 };
 
-export default Lcus;
+export default Receivers;

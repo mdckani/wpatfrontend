@@ -9,9 +9,12 @@ const ReactBasics = React.lazy(() => import("pages/ReactBasics"));
 const AppsLibrary = React.lazy(() => import("pages/AppsLibrary"));
 const DataTable = React.lazy(() => import("pages/DataTable"));
 const Windturbines = React.lazy(() => import("pages/View/Windturbines"));
-const Windturbine  = React.lazy(() => import("pages/View/Windturbine"));
 const Lcus = React.lazy(() => import("pages/View/Lcus"));
-const Lcu = React.lazy(() => import("pages/View/Lcu"));
+const Substations = React.lazy(() => import("pages/View/Substations"));
+const Receivers = React.lazy(() => import("pages/View/Receivers"));
+const Radars = React.lazy(() => import("pages/View/Radars")); 
+const Comments = React.lazy(() => import("pages/View/Comments"));
+
 const Signup = React.lazy(() => import("pages/Signup"));
 const HooksDemo = React.lazy(() => import("pages/HooksDemo"));
 const FileUpload = React.lazy(() => import("pages/FileUpload"));
@@ -79,6 +82,31 @@ const routes = [
     component: Lcus,
     navbar: "Data Table",
     child: null,
+  }, {
+    enabled: true,
+    path: "/substations",
+    component: Substations,
+    navbar: "Data Table",
+    child: null,
+  },
+  {
+    enabled: true,
+    path: "/receivers",
+    component: Receivers,
+    navbar: "Data Table",
+    child: null,
+  }, {
+    enabled: true,
+    path: "/radars",
+    component: Radars,
+    navbar: "Data Table",
+    child: null,
+  },{
+    enabled: true,
+    path: "/comments",
+    component: Comments,
+    navbar: "Data Table",
+    child: null,
   },
 
 
@@ -95,14 +123,8 @@ const routes = [
     component: DataTable,
     navbar: "Data Table",
     child: null,
-  },
-   {
-    enabled: true,
-    path: "/lcus",
-    component: Windturbine,
-    navbar: "Data Table",
-    child: null,
-  },
+  }, 
+ 
   {
     enabled: true,
     path: "/file-upload",

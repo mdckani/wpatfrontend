@@ -45,8 +45,7 @@ const DataTable = (props) => {
 
  
   return (
-    <>
-
+    <> 
 
 <MaterialTable columns={props.columns} data={items}
         editable={{
