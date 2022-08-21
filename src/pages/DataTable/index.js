@@ -31,6 +31,8 @@ const DataTable = (props) => {
         .then((resp) => {
           let result = resp.data;
           setItems(result);
+
+          console.log(MaterialTable);
         })
         .catch(({ response }) => {
           console.log(response);

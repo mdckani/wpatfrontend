@@ -11,42 +11,38 @@ import DataTable from "pages/DataTable";
 
 const Windturbines = () => {
   const url = "windturbines";
-  const columns = [
+  const columns = [ 
 
-
-    { title: "ID", field: "id", filterPlaceholder: "filter" },
-
-
-    { title: "Name", field: "name", sorting: true, filtering: true, cellStyle: { background: "#009688" }, headerStyle: { color: "#fff" } },
-
+    { title: "ID", field: "id", filterPlaceholder: "filter" }, 
+    { title: "Name", field: "name", sorting: true, filtering: true, cellStyle: { background: "#009688" }, headerStyle: { color: "#fff" } }, 
     { title: "Latitude", field: "latitude", filterPlaceholder: "filter" },
     { title: "Longitude", field: "longitude", filterPlaceholder: "filter" },
     { title: "Serial Number", field: "serialNumber", filterPlaceholder: "filter" },
-    { title: "Acquisition Status", render: rowData => rowData.acquisitionStatus.name, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => rowData.acquisitionStatus.name.indexOf(term) >= 0 },
+   { title: "Acquisition Status", nested:true,field: "acquisitionStatus.name", filterPlaceholder: "filter" },
     { title: "Windturbine Height", field: "windturbineHeight", filterPlaceholder: "filter" },
-    { title: "Installation Date", field: "installationDate", filterPlaceholder: "filter" },
-    { title: "Company Name", render: rowData => rowData.company.name, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => !(!rowData.company ||  !rowData.company.name || rowData.company.name.indexOf(term) < 0)  },
-    { title: "Company Phone Number", render: rowData => rowData.company.phoneNumber, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => rowData.company.phoneNumber.indexOf(term) >= 0 },
-    { title: "Company Email", render: rowData => rowData.company.emailId, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.emailId },
-    { title: "Company Street Name", render: rowData => rowData.company.streetName, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.streetName },
-    { title: "Company House Number", render: rowData => rowData.company.houseNumber, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.houseNumber },
-    { title: "Company Zipcode", render: rowData => rowData.company.postalCode, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.postalCode },
-    { title: "Company City", render: rowData => rowData.company.city, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.city },
-    { title: "Company State (Bundesland)", render: rowData => rowData.company.state, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.company.state },
+    { title: "Installation Date",    field: "installationDate", filterPlaceholder: "filter" }, 
 
-    { title: "Rotor Diameter", field: "rotorDiameter", filterPlaceholder: "filter" },
-    { title: "Manufacturer", render: rowData => rowData.manufacturer.name, filterPlaceholder: "filter", customFilterAndSearch: (term, rowData) => term == rowData.manufacturer.name.indexOf(term) >= 0 },
+     { title: "Company Name",  nested:true, field:"company.name", filterPlaceholder: "filter"},
+    { title: "Company Phone Number", nested:true, field:"company.phoneNumber", filterPlaceholder: "filter",hiddenByColumnsButton: true,},  
+    { title: "Company Email",  nested:true, field: "company.emailId", filterPlaceholder: "filter",hiddenByColumnsButton: true,},
 
-    { title: "Model Name", field: "modelName", filterPlaceholder: "filter" },
-    { title: "OEM SA", field: "oemsa", filterPlaceholder: "filter" },
-    { title: "Visibility Meter", field: "visibilityMeter", filterPlaceholder: "filter" },
-    { title: "Scada PC", field: "scadaPc", filterPlaceholder: "filter", grouping: false },
-    { title: "Nacelle Light", field: "nacelleLight", filterPlaceholder: "filter", grouping: false },
-    { title: "VLAN", field: "vlan", filterPlaceholder: "filter", grouping: false },
-    { title: "Tower Light Wireless Connection", field: "towerLightWirelessConnection", filterPlaceholder: "filter", grouping: false },
-    { title: "Nacelle Light Wireless Connection", field: "nacelleLightWirelessConnection", filterPlaceholder: "filter", grouping: false },
-    { title: "QSI PAN ID", field: "qsiPanId", filterPlaceholder: "filter", grouping: false },
-    { title: "QRT Binary Code", field: "qrtBinaryCode", filterPlaceholder: "filter", grouping: false }
+    { title: "Company Street Name", nested:true, field: "company.streetName", filterPlaceholder: "filter" ,hiddenByColumnsButton: true,},
+    { title: "Company House Number",  nested:true, field: "company.houseNumber", filterPlaceholder: "filter",hiddenByColumnsButton: true, },
+    { title: "Company Zipcode",  nested:true, field: "company.postalCode", filterPlaceholder: "filter",hiddenByColumnsButton: true,},
+    { title: "Company City", nested:true, field: "company.city", filterPlaceholder: "filter" ,hiddenByColumnsButton: true, },
+    { title: "Company State (Bundesland)", nested:true, field: "company.state", filterPlaceholder: "filter",hiddenByColumnsButton: true },
+    { title: "Rotor Diameter", field: "rotorDiameter", filterPlaceholder: "filter",hiddenByColumnsButton: true },
+    { title: "Manufacturer",nested:true,field: "manufacturer.name", filterPlaceholder: "filter"},
+    { title: "Model Name",nested:true, field: "model.name", filterPlaceholder: "filter" ,hiddenByColumnsButton: true},
+    { title: "OEM SA", field: "oemsa", filterPlaceholder: "filter",hiddenByColumnsButton: true },
+    { title: "Visibility Meter", field: "visibilityMeter", filterPlaceholder: "filter" ,hiddenByColumnsButton: true},
+    { title: "Scada PC", field: "scadaPc", filterPlaceholder: "filter", grouping: false ,hiddenByColumnsButton: true},
+    { title: "Nacelle Light", field: "nacelleLight", filterPlaceholder: "filter", grouping: false ,hiddenByColumnsButton: true},
+    { title: "VLAN", field: "vlan", filterPlaceholder: "filter", grouping: false,hiddenByColumnsButton: true },
+    { title: "Tower Light Wireless Connection", field: "towerLightWirelessConnection", filterPlaceholder: "filter", grouping: false,hiddenByColumnsButton: true, },
+    { title: "Nacelle Light Wireless Connection", field: "nacelleLightWirelessConnection", filterPlaceholder: "filter", grouping: false ,hiddenByColumnsButton: true,},
+    { title: "QSI PAN ID", field: "qsiPanId", filterPlaceholder: "filter", grouping: false ,hiddenByColumnsButton: true,},
+    { title: "QRT Binary Code", field: "qrtBinaryCode", filterPlaceholder: "filter", grouping: false,hiddenByColumnsButton: true, } 
   ];
 
   const actions = [{ text: "Show Map", path: "/" }];
