@@ -68,7 +68,7 @@ const Lcus = () => {
     <>
       <Header title="Lcus" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Lcus" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Lcus" type="lcus"/>
     </>
   );
 };

@@ -66,7 +66,7 @@ const Comments = () => {
     <>
       <Header title="Comments" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Comments" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Comments" type="comments"/>
     </>
   );
 };

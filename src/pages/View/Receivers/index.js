@@ -65,7 +65,7 @@ const Receivers = () => {
     <>
       <Header title="Receivers" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Receivers" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Receivers" type="receivers" />
     </>
   );
 };

@@ -66,7 +66,7 @@ const Substations = () => {
     <>
       <Header title="Substations" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Substations" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Substations" type="substations" />
     </>
   );
 };

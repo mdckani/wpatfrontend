@@ -19,13 +19,13 @@ const DataTable = (props) => {
   const [sorting, setSorting] = useState({ field: "", order: "" });
 
   const ITEMS_PER_PAGE = 50;
-  
+
   useEffect(() => {
     const getData = () => {
-      showLoader();     
-      console.log("AppConfig.backendApi" );
+      showLoader();
+      console.log("AppConfig.backendApi");
 
-      console.log(AppConfig.backendApi );
+      console.log(AppConfig.backendApi);
 
       Axios.get(AppConfig.backendApi + props.url)
         .then((resp) => {
@@ -41,15 +41,22 @@ const DataTable = (props) => {
         .finally(() => {
           hideLoader();
         });
-    }; 
+    };
     getData();
   }, []);
 
- 
-  return (
-    <> 
+  let selectedData = sessionStorage.getItem(props.type);
+  if (selectedData && selectedData.length > 0) {
+    selectedData = JSON.parse(selectedData);
+  } else {
+    selectedData = [];
+  }
 
-<MaterialTable columns={props.columns} data={items}
+  selectedData = selectedData.map((i) => { return i.id })
+  return (
+    <>
+
+      <MaterialTable columns={props.columns} data={items}
         editable={{
           onRowAdd: (newRow) => new Promise((resolve, reject) => {
             setItems([...items, newRow])
@@ -68,6 +75,13 @@ const DataTable = (props) => {
             setItems(updatedData)
             setTimeout(() => resolve(), 1000)
 
+          }),
+          onRowDetail: (selectedRow) => new Promise((resolve, reject) => {
+            const updatedData = [...items]
+            updatedData.splice(items.findIndex(x => x.id === selectedRow.id), 1)
+            setItems(updatedData)
+            setTimeout(() => resolve(), 1000)
+
           })
         }}
         actions={[
@@ -78,7 +92,12 @@ const DataTable = (props) => {
             // isFreeAction:true
           }
         ]}
-        onSelectionChange={(selectedRows) => console.log(selectedRows)}
+        onSelectionChange={(selectedRows) => {
+          console.log(selectedRows);
+          let data = sessionStorage.getItem(props.type);
+          sessionStorage.setItem(props.type, JSON.stringify(selectedRows));
+          selectedData = selectedRows.map((i) => { return i.id })
+        }}
         options={{
           sorting: true, search: true,
           searchFieldAlignment: "right", searchAutoFocus: true, searchFieldVariant: "standard",
@@ -91,10 +110,14 @@ const DataTable = (props) => {
           }),
           grouping: true, columnsButton: true,
           rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
-          headerStyle: { background: "#f44336",color:"#fff"}
+          headerStyle: { background: "#f44336", color: "#fff" },
+          selection: true,
+          selectionProps: rowData => ({
+            checked: !!selectedData.includes(rowData.id)
+          })
         }}
         title={props.title}
-        icons={{ Add: () => <AddIcon /> }} /> 
+        icons={{ Add: () => <AddIcon /> }} />
       {loader}
     </>
   );

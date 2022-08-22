@@ -65,7 +65,7 @@ const Radars = () => {
     <>
       <Header title="Radars" actions={actions} />
       <SubHeader title="" actions={subActions} />
-      <DataTable url={url} columns={columns} actions={rowActions} title="Radars" />
+      <DataTable url={url} columns={columns} actions={rowActions} title="Radars" type="radars" />
     </>
   );
 };
