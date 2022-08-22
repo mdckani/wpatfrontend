@@ -21,12 +21,14 @@ const Lcus = () => {
      
       { title: "Latitude", field: "latitude", filterPlaceholder: "filter" },
       { title: "Longitude", field: "longitude", filterPlaceholder: "filter" },
-     /* { title: "Serial Number", field: "serialNumber", filterPlaceholder: "filter" },
-      { title: "Acquistiontion Status", field: "acquistiontionStatus", filterPlaceholder: "filter" },
+  { title: "Serial Number", field: "serialNumber", filterPlaceholder: "filter" },
+  { title: "Installation Date", field: "installationDate", filterPlaceholder: "filter" },
+  { title: "Lcu Height", field: "lcuHeight", filterPlaceholder: "filter" },
+  { title: "Company Name", field: "companyName", filterPlaceholder: "filter" },
+       /*   { title: "Acquistiontion Status", field: "acquistiontionStatus", filterPlaceholder: "filter" },
      
-      { title: "Lcu Height", field: "lcuHeight", filterPlaceholder: "filter" },
-      { title: "Installation Date", field: "installationDate", filterPlaceholder: "filter" },
-      { title: "Company Name", field: "companyName", filterPlaceholder: "filter" },
+     
+      
       { title: "Company Phone Number", field: "companyPhoneNumber", filterPlaceholder: "filter" },
       { title: "Company Email", field: "companyEmail", filterPlaceholder: "filter" },
       { title: "Company Street Name", field: "companyAddress", filterPlaceholder: "filter" },

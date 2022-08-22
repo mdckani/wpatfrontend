@@ -58,13 +58,13 @@ const DataTable = (props) => {
           }),
           onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
             const updatedData = [...items]
-            updatedData[oldRow.items.id] = newRow
+            updatedData[items.findIndex(x => x.id === oldRow.id)] = newRow
             setItems(updatedData)
             setTimeout(() => resolve(), 500)
           }),
           onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
             const updatedData = [...items]
-            updatedData.splice(selectedRow.items.id, 1)
+            updatedData.splice(items.findIndex(x => x.id === selectedRow.id), 1)
             setItems(updatedData)
             setTimeout(() => resolve(), 1000)
 
