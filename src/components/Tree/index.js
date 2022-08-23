@@ -9,8 +9,6 @@ const nodes = [];
 
 
 class Tree extends React.Component {
-
- 
   state = {
     checked: [],
     expanded: [],
@@ -18,24 +16,31 @@ class Tree extends React.Component {
     nodesFiltered: nodes,
     nodes
   };
+  //sessionStorage.setItem("tree", JSON.stringify(state));
+
   componentDidMount() {
-     Axios.get(AppConfig.backendApi +this.props.url)
-      .then(res => { 
+    Axios.get(AppConfig.backendApi + this.props.url)
+      .then(res => {
         this.setState(
           (prevState) => ({
+            filterText: ((sessionStorage.getItem("filterText") && sessionStorage.getItem("filterText").length > 0) ? JSON.parse(sessionStorage.getItem("filterText")) : ""),
+            checked: ((sessionStorage.getItem("checked") && sessionStorage.getItem("checked").length > 0) ? JSON.parse(sessionStorage.getItem("checked")) : []),
+            expanded: ((sessionStorage.getItem("expanded") && sessionStorage.getItem("expanded").length > 0) ? JSON.parse(sessionStorage.getItem("expanded")) : []),
             nodesFiltered: res.data,
             nodes: res.data
-          }) );
+          }));
       }).catch(({ response }) => {
         console.log(response);
-     //   this.setState({nodes});
+        //   this.setState({nodes});
       })
       .finally(() => {
-       });
+      });
   }
 
   constructor(props) {
     super(props);
+
+
     this.onCheck = this.onCheck.bind(this);
     this.onExpand = this.onExpand.bind(this);
     this.onFilterChange = this.onFilterChange.bind(this);
@@ -45,14 +50,19 @@ class Tree extends React.Component {
 
   onCheck(checked) {
     this.setState({ checked });
+    // let data = sessionStorage.getItem("tree");
+    sessionStorage.setItem("checked", JSON.stringify(checked));
   }
 
   onExpand(expanded) {
     this.setState({ expanded });
+    sessionStorage.setItem("expanded", JSON.stringify(expanded));
   }
 
   onFilterChange(e) {
     this.setState({ filterText: e.target.value }, this.filterTree);
+    sessionStorage.setItem("filterText", JSON.stringify(e.target.value));
+
   }
 
   filterTree() {
@@ -78,7 +88,7 @@ class Tree extends React.Component {
 
     if (
       // Node's label matches the search string
-      node.label  &&    node.label.toLocaleLowerCase().indexOf(filterText.toLocaleLowerCase()) >
+      node.label && node.label.toLocaleLowerCase().indexOf(filterText.toLocaleLowerCase()) >
       -1 ||
       // Or a children has a matching node
       children.length
@@ -108,6 +118,7 @@ class Tree extends React.Component {
           nodes={nodesFiltered}
           onCheck={this.onCheck}
           onExpand={this.onExpand}
+
         />
       </div>
     );
