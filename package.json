@@ -21,6 +21,7 @@
         "axios": "^0.21.1",
         "bootstrap": "^4.4.1",
         "cors": "^2.8.5",
+        "deni-react-treeview": "^1.1.11",
         "google-map-react": "^1.1.7",
         "leaflet": "^1.7.1",
         "leaflet-draw": "^1.0.4",

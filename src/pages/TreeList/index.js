@@ -3,6 +3,8 @@ import Header from "components/Header";
 import Tree from "components/Tree";
 import ExternalInfo from "components/ExternalInfo";
 
+import TreeView from 'deni-react-treeview';
+
 const treeData = [
   {
     key: "0",
@@ -76,8 +78,9 @@ const treeData = [
 const TreeList = () => {
   return (
     <>
-      <Header title="Tree Data Visualization" />
-      
+
+ <Header title="Tree Data Visualization" />
+
 
       <div className="row">
         <div className="col text-center">
@@ -85,7 +88,10 @@ const TreeList = () => {
           <p className="mt-3">
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-lg-8 text-left text-dark">
-                <Tree data={treeData} />
+              
+<TreeView url="http://localhost:8092/tree/manager" showCheckbox={true} />
+   
+     
               </div>
             </div>
           </p>

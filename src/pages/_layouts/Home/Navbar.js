@@ -134,7 +134,7 @@ export const Navbar = () => {
                 </li>
               );
             })}
-        </ul>
+        </ul> 
       </Scrollbars>
     </nav>
   );

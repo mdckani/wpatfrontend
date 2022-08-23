@@ -10,3 +10,14 @@
 .d-tree-toggler.active {
   transform: rotate(45deg);
 }
+
+.deni-react-treeview-container.classic {
+  color: white !important;
+  border-color: transparent !important;
+  background-color: transparent !important;
+}
+.deni-react-treeview-container * {
+
+  color: white !important;
+
+}
