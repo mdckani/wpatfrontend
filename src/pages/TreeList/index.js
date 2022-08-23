@@ -2,8 +2,10 @@ import React from "react";
 import Header from "components/Header";
 import Tree from "components/Tree";
 import ExternalInfo from "components/ExternalInfo";
-
 import TreeView from 'deni-react-treeview';
+
+import { FaTrash, FaEdit, FaAdd } from 'react-icons/fa';
+//import CustomTree from "components/CustomTree";
 
 const treeData = [
   {
@@ -75,23 +77,39 @@ const treeData = [
   },
 ];
 
+const onActionButtonClick = (item, actionButton) => {
+  const buttonName = actionButton.type.name;
+  debugger;
+  switch (buttonName) {
+    case 'FaTrash':
+      console.log('Action: trash, Item: ' + item.text);
+      break;
+    case 'FaEdit':
+      console.log('Action: edit, Item: ' + item.text);
+      break;
+    default:
+  }
+}
+
+const actionButtons = [
+  (<FaTrash key={1} size="15" color="#ff9980" visibility={"hidden"} />),
+  (<FaEdit key={2} size="15" color="#3679b0" />)
+];
+
 const TreeList = () => {
   return (
     <>
 
- <Header title="Tree Data Visualization" />
-
-
+      <Header title="Tree Data Visualization" />
       <div className="row">
         <div className="col text-center">
           <h2>Tree Visualization component</h2>
           <p className="mt-3">
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-lg-8 text-left text-dark">
-              
-<TreeView url="http://localhost:8092/tree/manager" showCheckbox={true} />
-   
-     
+                <Tree url="http://localhost:8092/tree/manager" showCheckbox={true}
+                  actionButtons={actionButtons}
+                  onActionButtonClick={onActionButtonClick} />
               </div>
             </div>
           </p>

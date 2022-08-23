@@ -17,87 +17,41 @@ export const Navbar = () => {
   const getNavLinkClass = (path) => {
     return location.pathname === path ? "active" : "";
   };
-  const treeData = [
+  const nodes = [
     {
-      key: "0",
-      label: "Documents",
-      icon: "fa fa-folder",
-      title: "Documents Folder",
+      value: "mars2",
+      label: "Mars",
       children: [
         {
-          key: "0-0",
-          label: "Document 1-1",
-          icon: "fa fa-folder",
-          title: "Documents Folder",
+          value: "masrs2",
+          label: "Ph24obos",
           children: [
-            {
-              key: "0-1-1",
-              label: "Document-0-1.doc",
-              icon: "fa fa-file",
-              title: "Documents Folder",
-            },
-            {
-              key: "0-1-2",
-              label: "Document-0-2.doc",
-              icon: "fa fa-file",
-              title: "Documents Folder",
-            },
-            {
-              key: "0-1-3",
-              label: "Document-0-3.doc",
-              icon: "fa fa-file",
-              title: "Documents Folder",
-            },
-            {
-              key: "0-1-4",
-              label: "Document-0-4.doc",
-              icon: "fa fa-file",
-              title: "Documents Folder",
-            },
-          ],
-        },
-      ],
-    },
-    {
-      key: "1",
-      label: "Desktop",
-      icon: "fa fa-desktop",
-      title: "Desktop Folder",
-      children: [
-        {
-          key: "1-0",
-          label: "document1.doc",
-          icon: "fa fa-file",
-          title: "Documents Folder",
+            { value: "ma2rseds", label: "Phobos" },
+            { value: "ma2rhs", label: "Deimos" }
+          ]
         },
         {
-          key: "0-0",
-          label: "documennt-2.doc",
-          icon: "fa fa-file",
-          title: "Documents Folder",
-        },
-      ],
-    },
-    {
-      key: "2",
-      label: "Downloads",
-      icon: "fa fa-download",
-      title: "Downloads Folder",
-      children: [],
-    },
-  ];
+          value: "deim23os",
+          label: "Deim5os",
+          children: [
+            { value: "phobos", label: "Phobos" },
+            { value: "deimos", label: "Deimos" }
+          ]
+        }
+      ]
+    }
+  ];  
+
+
   return (
     <nav id="sidebar" className={!isNavbarVisible ? "active" : ""}>
-      <Scrollbars style={{ width: "100%", height: "100%" }}>
-        
+      <Scrollbars style={{ width: "100%", height: "100%" }}>        
         <div className="sidebar-header">
           <h3>
             <Link to="/">WPAT</Link>
           </h3>
         </div>
-
-        <Tree data={treeData} />
-
+        <Tree url={"tree/manager"} nodes={nodes} /> 
         <ul className="list-unstyled components">
           {routes
             .filter((route) => route.navbar !== "")
@@ -134,7 +88,7 @@ export const Navbar = () => {
                 </li>
               );
             })}
-        </ul> 
+        </ul>
       </Scrollbars>
     </nav>
   );
