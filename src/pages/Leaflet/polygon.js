@@ -57,13 +57,13 @@ const PolygonMap = () => {
   useEffect(() => {
     const getData = () => {
       showLoader();
-      setWindfarm("windfarm");
-      setWindfarm("windturbine");
-      setWindfarm("lcu");
-      setWindfarm("receiver");
-      setWindfarm("substation");
-      setWindfarm("radar");
-      setWindfarm("comment");
+      setWindfarm(getItemData("windfarm"));
+      setWindturbine(getItemData("windturbine"));
+      setLcu(getItemData("lcu"));
+      setReceiver(getItemData("receiver"));
+      setSubstation(getItemData("substation"));
+      setRadar(getItemData("radar"));
+      setComment(getItemData("comment"));
       hideLoader();
     };
     getData();
