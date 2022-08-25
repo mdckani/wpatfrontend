@@ -1,6 +1,7 @@
 import React from "react";
 import Header from "components/Header";
 import Tree from "components/Tree";
+import CheckboxTree from "components/CheckboxTree";
 import ExternalInfo from "components/ExternalInfo";
 import TreeView from 'deni-react-treeview';
 
@@ -79,8 +80,7 @@ const treeData = [
 
 const onActionButtonClick = (item, actionButton) => {
   const buttonName = actionButton.type.name;
-  debugger;
-  switch (buttonName) {
+   switch (buttonName) {
     case 'FaTrash':
       console.log('Action: trash, Item: ' + item.text);
       break;
@@ -96,9 +96,27 @@ const actionButtons = [
   (<FaEdit key={2} size="15" color="#3679b0" />)
 ];
 
+const nodes = [
+  {
+    value: "123",
+    data: "mars2",
+    label: "Mars",
+    children: [
+      {
+        data: "mars2",
+        value: "ma1srs2",
+        label: "Ph24obos",
+
+      },
+
+    ]
+  }
+];
+
 const TreeList = () => {
   return (
     <>
+ <CheckboxTree url={"tree/manager"} nodes={nodes} />
 
       <Header title="Tree Data Visualization" />
       <div className="row">
@@ -107,9 +125,11 @@ const TreeList = () => {
           <p className="mt-3">
             <div className="row mt-3 d-flex justify-content-center">
               <div className="col-lg-8 text-left text-dark">
-                <Tree url="http://localhost:8092/tree/manager" showCheckbox={true}
-                  actionButtons={actionButtons}
-                  onActionButtonClick={onActionButtonClick} />
+
+
+               
+
+
               </div>
             </div>
           </p>

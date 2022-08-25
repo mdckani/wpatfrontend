@@ -1,8 +1,12 @@
 import React from "react";
-import CheckboxTree from "react-checkbox-tree";
+import CheckboxTree1 from "react-checkbox-tree";
+
+
+import CheckboxTree from "components/CheckboxTree";
 import "react-checkbox-tree/lib/react-checkbox-tree.css";
 import Axios from "axios";
 import useFullPageLoader from "hooks/useFullPageLoader";
+
 
 import AppConfig from "App.config";
 const nodes = [];
@@ -48,12 +52,39 @@ class Tree extends React.Component {
     this.filterNodes = this.filterNodes.bind(this);
   }
 
-  onCheck(checked) {
+  onCheck(checked, item, children) {
     this.setState({ checked });
-    // let data = sessionStorage.getItem("tree");
     sessionStorage.setItem("checked", JSON.stringify(checked));
+    if (item.checked) {
+      //Add to session && add to map
+      this.addToSession(item.data);
+      for (var i = 0; i < children.length; i++) {
+        this.addToSession(children[i]);
+      }
+    } else {
+      //Remove from  session && Remove from  map
+      this.removeFromSession(item.data);
+      for (var i = 0; i < children.length; i++) {
+        this.removeFromSession(children[i]);
+      }
+    }
   }
-
+  addToSession(item) {
+    if (item && item.type) {
+      let selectedData = sessionStorage.getItem(item.type);
+      selectedData = (selectedData && selectedData.length > 0) ? JSON.parse(selectedData) : {};
+      selectedData[item.id] = item;
+      sessionStorage.setItem(item.type, JSON.stringify(selectedData));
+    }
+  }
+  removeFromSession(item) {
+    if (item && item.type) {
+      let selectedData = sessionStorage.getItem(item.type);
+      selectedData = (selectedData && selectedData.length > 0) ? JSON.parse(selectedData) : {};
+      delete selectedData[item.id];
+      sessionStorage.setItem(item.type, JSON.stringify(selectedData));
+    }
+  }
   onExpand(expanded) {
     this.setState({ expanded });
     sessionStorage.setItem("expanded", JSON.stringify(expanded));
